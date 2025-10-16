@@ -1,15 +1,11 @@
 from selenium import webdriver
-from selenium.webdriver.edge.service import Service
 from selenium.webdriver.edge.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-# 配置Edge浏览器
 edge_options = Options()
-# 如果不想看到浏览器界面，可以取消下面这行的注释
-# edge_options.add_argument('--headless')
 edge_options.add_argument('--disable-blink-features=AutomationControlled')
 edge_options.add_experimental_option('excludeSwitches', ['enable-automation'])
 edge_options.add_experimental_option('useAutomationExtension', False)
@@ -22,7 +18,6 @@ base_url = "https://buaa.yuketang.cn/pro/lms/CTRhhgJSDtg/28447694/video/"
 def check_completion(driver):
     """检查视频完成度是否为100%"""
     try:
-        # 查找完成度元素
         completion_element = driver.find_element(By.XPATH, 
             "//span[@class='text' and contains(text(), '完成度：')]")
         completion_text = completion_element.text
